@@ -3,7 +3,7 @@ from otp import genotp
 from cmail import sendmail
 from token_1 import encode,decode
 import os
-import razorpay
+#import razorpay
 import re
 import mysql.connector
 from mysql.connector import (connection)
@@ -11,7 +11,7 @@ from mysql.connector import (connection)
 app=Flask(__name__)
 app.secret_key='code@123'
 app.config['SESSION_TYPE']='filesystem'
-client = razorpay.Client(auth=("rzp_test_YHO379ztVK64ZN","C4aXFH2ZhukVxnudToAasqU2"))
+#client = razorpay.Client(auth=("rzp_test_YHO379ztVK64ZN","C4aXFH2ZhukVxnudToAasqU2"))
 
 user=os.environ.get('RDS_USERNAME')
 db=os.environ.get('RDS_DB_NAME')
@@ -559,7 +559,7 @@ def description(itemid):
         return redirect(url_for('index'))
     return render_template('description.html',item_data=item_data)
 
-@app.route('/pay/<itemid>/<name>/<float:price>',methods=['GET','POST'])
+'''@app.route('/pay/<itemid>/<name>/<float:price>',methods=['GET','POST'])
 def pay(itemid,name,price):
     if session.get('user'):
         try:
@@ -627,7 +627,7 @@ def orders():
         else:
             return render_template('orders.html',ordlist=ordlist)
     else:
-        return redirect(url_for('userlogin'))
+        return redirect(url_for('userlogin'))'''
 
 @app.route('/search',methods=['GET','POST'])
 def search():
