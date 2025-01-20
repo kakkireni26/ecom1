@@ -674,5 +674,5 @@ def addreview(itemid):
     else:
         return redirect(url_for('userlogin'))
 
-if __name__='__main__':
+if __name__=='__main__':
     app.run(debug=True)

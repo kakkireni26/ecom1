@@ -11,18 +11,20 @@
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Jersey+10&family=Merienda:wght@300..900&display=swap");
-
     body {
       background: linear-gradient(lightblue, gray);
+      overflow-x: hidden;
     }
     .navbar {
-      background: linear-gradient(rgba(255, 192, 203, 0.582),
+      background-color: yellow;
+      color: white;
+      /* background: linear-gradient(rgba(255, 192, 203, 0.582),
           rgba(255, 255, 0, 0.582));
-      box-shadow: 1px 1px 5px rgb(255, 255, 255);
+      box-shadow: 1px 1px 5px rgb(255, 255, 255); */
     }
 
     ul li a {
-      color: #000000 !important;
+      color: #fff!important;
       font-size: 18px;
       font-weight: bold;
     }
@@ -41,13 +43,14 @@
     }
 
     .banar {
-      margin-top: 4.5%;
+      margin-top: 4.4%;
       background: url(https://4kwallpapers.com/images/wallpapers/color-burst-colorful-explosion-cgi-cosmic-black-background-3840x2160-6652.jpg);
       background-repeat: no-repeat;
       background-size: 100%;
       background-position: center;
-      height: 55vh;
-      width: 100vw;
+      background-attachment: fixed;
+      height: 91vh;
+      width: 100%;
       display: flex;
       justify-content: space-around;
     }
@@ -57,10 +60,10 @@
     }
 
     footer {
-      background-color: rgb(193, 189, 189);
+      background-color: rgb(168, 163, 14);
       padding: 1%;
       text-align: center;
-      margin-top: 5%;
+      border-top: 5%;
     }
 
     .search {
@@ -73,8 +76,9 @@
     }
 
     .Bimage {
-      width: 100%;
-      height: 100%;
+      width: 15%;
+      height: 20%;
+      margin-left: 83%;
     }
 
     h1 {
@@ -119,10 +123,13 @@
 
     .card {
       height: 500px;
+      margin-left: 7%;
+      border-radius:5%;
     }
 
     .card-img-top {
       height: 250px;
+      border-radius: 5%;
       /* width: 100px; */
     }
 
@@ -142,7 +149,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
     <div class="container-fluid">
       <a href="{{url_for('index')}}"><img src="/static/BUYROUTE.png" alt="Logo" class="logo" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -210,6 +217,9 @@
           </li>
           {% endif %}
         </ul>
+        {% if session.get('user') %}
+        <div class="image"><img src="/static/Kb5Zc1.jpg" alt="Image" class="Bimage" width="5" height="5" /></div>
+        {% endif %}
         {{session.get('user')}}&nbsp;
         <form class="d-flex" method="post" action="{{url_for('search')}}">
           <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
@@ -228,7 +238,7 @@
               <h1>BUYROUTE</h1>
               <h3>Welcome's To You</h3>
             </div>
-            <div class="image"><img src="/static/imag.png" alt="Image" class="Bimage" /></div>
+            <!-- <div class="image"><img src="/static/Kb5Zc1.jpg" alt="Image" class="Bimage" width="5" height="5" /></div> -->
           </div>
         </div>
       </div>
@@ -244,8 +254,8 @@
             <a href="{{url_for('description',itemid=i[0])}}"><img src="/static/{{i[5]}}" class="card-img-top" alt="Faction" /></a>
             <div class="card-body">
               <div class="matter">
+              <a href="{{url_for('description',itemid=i[0])}}" style="text-decoration: none;color: black;"><h3 class="card-title">{{i[1]}} </h3></a>
               <h5 class="card-title">{{i[0]}} </h5>
-              <a href="{{url_for('description',itemid=i[0])}}"><h5 class="card-title">{{i[1]}} </h5></a>
               </div>
               <br> <span>Cost:- {{i[2]}}/-</span>
               <span>Stock:- {{i[3]}}/-</span>

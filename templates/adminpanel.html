@@ -44,6 +44,11 @@
       -webkit-text-fill-color: transparent;
       text-shadow: none;
     }
+    .Bimage {
+      width: 15%;
+      height: 20%;
+      margin-left: 83%;
+    }
     </style>
 </head>
 <body>
@@ -68,6 +73,9 @@
                 <a class="nav-link active" href="{{url_for('adminlogout')}}">Logout</a>
               </li>
             </ul>
+            {% if session.get('admin') %}
+            <div class="image"><img src="/static/Kb5Zc1.jpg" alt="Image" class="Bimage" width="5" height="5" /></div>
+            {% endif %}
             {{session.get('admin')}}
             <form class="d-flex" method="post" action="#">
               <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">

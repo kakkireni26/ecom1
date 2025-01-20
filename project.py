@@ -221,6 +221,7 @@ def viewallitems():
             flash('Connection error')
             return redirect(url_for('adminpanel'))
         else:
+            # return render_template('viewall_items.html',stored_itemdata=stored_itemdata)
             return render_template('viewall_items.html',stored_itemdata=stored_itemdata)
     else:
         return redirect(url_for('adminlogin'))
@@ -491,7 +492,6 @@ def category(type):
     return render_template('dashboard.html',items_data=items_data)
 
 @app.route('/addcart/<itemid>/<name>/<price>/<qyt>/<category>/<image>')
-
 def addcart(itemid,name,price,qyt,category,image):
     if not session.get('user'):
         return redirect(url_for('userlogin'))
@@ -548,8 +548,8 @@ def pay(itemid,name,price):
     if session.get('user'):
         try:
             qyt=int(request.form.get('qyt'))
-            amount=price*100    #conevert price into paise
-            total_price=qyt*amount
+            # amount=price*100    #conevert price into paise
+            total_price=qyt*price
             print(f'creating payment for item:{itemid},name:{name},price:{total_price}')        ##create Razorpay order
             order=client.order.create({
                 'amount':total_price,
